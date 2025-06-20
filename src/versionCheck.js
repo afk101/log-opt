@@ -9,25 +9,30 @@ const chalk = require('chalk'); // 用于控制台颜色输出
  */
 function getCurrentVersion() {
   try {
-    const packageJsonPath = path.join(process.cwd(), 'package.json');
-    if (fs.existsSync(packageJsonPath)) {
-      const packageJson = require(packageJsonPath);
-      return packageJson.version || '1.0.0';
-    }
-    
-    // 如果找不到package.json，尝试获取已安装包的版本
+    // 首先尝试获取已安装包的版本
     const packageName = 'log-opt';
     try {
       const packageMainPath = require.resolve(packageName);
       const packageDirPath = path.dirname(packageMainPath);
-      const installedPackageJsonPath = path.join(packageDirPath, 'package.json');
+      const packageJsonPath = path.join(packageDirPath, 'package.json');
       
-      if (fs.existsSync(installedPackageJsonPath)) {
-        const packageJson = require(installedPackageJsonPath);
-        return packageJson.version || '1.0.0';
+      if (fs.existsSync(packageJsonPath)) {
+        const packageJson = require(packageJsonPath);
+        if (packageJson.name === packageName) {
+          return packageJson.version || '1.0.0';
+        }
       }
     } catch (e) {
       // 忽略错误
+    }
+    
+    // 如果无法找到模块版本，回退到工作目录检查
+    const packageJsonPath = path.join(process.cwd(), 'package.json');
+    if (fs.existsSync(packageJsonPath)) {
+      const packageJson = require(packageJsonPath);
+      if (packageJson.name === 'log-opt') {
+        return packageJson.version || '1.0.0';
+      }
     }
     
     return '1.0.0'; // 默认版本号
