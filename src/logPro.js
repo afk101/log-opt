@@ -100,22 +100,23 @@ function _initialize_log_dirs() {
  * 在生产环境中，此函数不执行任何操作。
  *
  * @param {any} content 要输出的内容，可以是任意类型（字符串、对象、数组等）
- * @param {string} filename 输出文件名，支持各种扩展名如.txt、.json、.js等。如果没有提供后缀，将自动添加.txt
- * @param {boolean} clear_on_restart 是否在服务重启时清空输出文件，默认为true
- * @param {boolean} show_timestamp 是否显示时间戳，默认为false
- * @param {number} line_breaks 每条记录之间的空行数，默认为1（即一条记录后空一行）
- * @param {string|null} folder 子文件夹路径，例如'block'或'block/text'，默认为null
- * @param {boolean} forceWrite 是否强制使用写入模式（覆盖已有内容）
+ * @param {Object} [options] 配置选项
+ * @param {string} [options.filename="default.txt"] 输出文件名，支持各种扩展名如.txt、.json、.js等。如果没有提供后缀，将自动添加.txt
+ * @param {boolean} [options.clear_on_restart=true] 是否在服务重启时清空输出文件
+ * @param {boolean} [options.show_timestamp=false] 是否显示时间戳
+ * @param {number} [options.line_breaks=1] 每条记录之间的空行数，默认为1（即一条记录后空一行）
+ * @param {string|null} [options.folder=null] 子文件夹路径，例如'block'或'block/text'
+ * @param {boolean} [options.forceWrite=true] 是否强制使用写入模式（覆盖已有内容）
  */
-function logPro(
-  content,
-  filename = "default.txt",
-  clear_on_restart = true,
-  show_timestamp = false,
-  line_breaks = 1,
-  folder = null,
-  forceWrite = true
-) {
+function logPro(content, options = {}) {
+  // 处理配置参数
+  const filename = options.filename || "default.txt";
+  const clear_on_restart = options.clear_on_restart !== undefined ? options.clear_on_restart : true;
+  const show_timestamp = options.show_timestamp || false;
+  const line_breaks = options.line_breaks !== undefined ? options.line_breaks : 1;
+  const folder = options.folder || null;
+  const forceWrite = options.forceWrite !== undefined ? options.forceWrite : true;
+
   // 在生产环境中，此函数不执行任何操作
   if (_is_production) {
     return;

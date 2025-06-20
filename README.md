@@ -10,6 +10,7 @@
 - 支持添加时间戳
 - 支持多级目录结构
 - 生产环境自动禁用日志功能
+- 简洁直观的参数传递方式
 
 ## 安装
 
@@ -29,13 +30,22 @@ logPro('这是一条普通日志');
 logPro({ name: '测试', value: 123 });
 
 // 输出到指定文件（带时间戳）
-logPro('带时间戳的日志', 'debug.log', true, true);
+logPro('带时间戳的日志', {
+  filename: 'debug.log',
+  show_timestamp: true
+});
 
 // 输出到子文件夹
-logPro('子文件夹日志', 'sublog.txt', true, false, 1, 'subfolder');
+logPro('子文件夹日志', {
+  filename: 'sublog.txt',
+  folder: 'subfolder'
+});
 
 // 持久化日志（服务重启不会清除）
-logPro('这是一条持久化日志', 'important.log', false);
+logPro('这是一条持久化日志', {
+  filename: 'important.log',
+  clear_on_restart: false
+});
 
 // 清理所有临时日志
 clearLogProLogs();
@@ -46,13 +56,21 @@ clearLogProLogs(true);
 
 ## API
 
-### logPro(content, filename, clear_on_restart, show_timestamp, line_breaks, folder, forceWrite)
+### logPro(content, options)
 
 将内容写入到指定文件中。
 
+#### 参数
+
 | 参数 | 类型 | 默认值 | 说明 |
 |------|------|--------|------|
-| content | any | - | 要输出的内容，可以是任意类型 |
+| content | any | - | 要输出的内容，可以是任意类型（字符串、对象、数组等） |
+| options | object | {} | 配置选项对象 |
+
+#### options 配置选项
+
+| 属性 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
 | filename | string | "default.txt" | 输出文件名 |
 | clear_on_restart | boolean | true | 是否在服务重启时清空输出文件 |
 | show_timestamp | boolean | false | 是否显示时间戳 |

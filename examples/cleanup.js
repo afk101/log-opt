@@ -4,13 +4,29 @@ const { logPro, clearLogProLogs } = require('../index');
 console.log('生成测试日志文件...');
 
 // 生成临时日志
-logPro('临时日志1', 'temp1.log');
-logPro('临时日志2', 'temp2.log');
-logPro('临时子文件夹日志', 'subfolder.txt', true, false, 1, 'debug');
+logPro('临时日志1', {
+  filename: 'temp1.log'
+});
+
+logPro('临时日志2', {
+  filename: 'temp2.log'
+});
+
+logPro('临时子文件夹日志', {
+  filename: 'subfolder.txt',
+  folder: 'debug'
+});
 
 // 生成持久化日志
-logPro('持久化日志1', 'persist1.log', false);
-logPro('持久化日志2', 'persist2.log', false);
+logPro('持久化日志1', {
+  filename: 'persist1.log',
+  clear_on_restart: false
+});
+
+logPro('持久化日志2', {
+  filename: 'persist2.log',
+  clear_on_restart: false
+});
 
 console.log('日志文件已生成');
 console.log('清理所有临时日志文件...');
