@@ -1,6 +1,6 @@
 {
   "name": "log-opt",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "增强版日志工具，支持多种数据类型输出和临时/持久化存储",
   "main": "index.js",
   "module": "dist/index.esm.mjs",
