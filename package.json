@@ -1,6 +1,6 @@
 {
   "name": "log-opt",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "增强版日志工具，支持多种数据类型输出和临时/持久化存储",
   "main": "index.js",
   "module": "dist/index.esm.mjs",
@@ -50,11 +50,11 @@
   ],
   "author": "",
   "license": "MIT",
-  "dependencies": {},
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
+    "chalk": "^4.1.2",
     "rollup": "^4.9.6"
   },
   "engines": {
