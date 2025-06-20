@@ -1,11 +1,17 @@
 {
-  "name": "log-opt",
+  "name": "log-pro",
   "version": "1.0.0",
+  "description": "增强版日志工具，支持多种数据类型输出和临时/持久化存储",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "log",
+    "debug",
+    "logger"
+  ],
   "author": "",
-  "license": "ISC",
-  "description": ""
+  "license": "MIT",
+  "dependencies": {}
 }
