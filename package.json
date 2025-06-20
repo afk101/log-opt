@@ -1,6 +1,6 @@
 {
   "name": "log-opt",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "增强版日志工具，支持多种数据类型输出和临时/持久化存储",
   "main": "index.js",
   "module": "dist/index.esm.mjs",
@@ -26,8 +26,7 @@
     "src/",
     "index.js",
     "types/",
-    "README.md",
-    "examples/"
+    "README.md"
   ],
   "scripts": {
     "build": "rollup -c",
