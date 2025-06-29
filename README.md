@@ -144,10 +144,10 @@ npm run test:esm
 
 ## 🌍 环境变量
 
-- `ENVIRONMENT`: 设置为 "production" 时，禁用所有日志功能
+- `NODE_ENV`: 设置为 "production" 时，禁用所有日志功能
 
 ```bash
-ENVIRONMENT=production node your-app.js
+NODE_ENV=production node your-app.js
 ```
 
 ## 📝 TypeScript 支持
@@ -189,7 +189,7 @@ logPro('TypeScript 支持', options);
 2. **持久化日志**: 存储在 `logProLog/` 目录下，文件名前缀为 `persistent_`
 3. **自动清理**: 程序正常退出时会自动清理临时目录
 4. **异常恢复**: 程序异常退出后，下次启动时会自动清理不再运行的进程的临时目录
-5. **生产环境**: 设置 `ENVIRONMENT=production` 时，所有日志函数都不会执行
+5. **生产环境**: 设置 `NODE_ENV=production` 时，所有日志函数都不会执行
 
 ## 📖 更多示例
 

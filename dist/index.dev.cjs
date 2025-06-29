@@ -12,7 +12,7 @@ var child_process = require('child_process');
 // 定义全局变量
 let _temp_dir = null;
 // 检查是否为生产环境
-const _is_production = process.env.ENVIRONMENT === "production";
+const _is_production = process.env.NODE_ENV === "production";
 
 /**
  * 获取日志主目录和临时目录的路径
