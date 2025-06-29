@@ -7,7 +7,7 @@ const { execSync } = require('child_process');
 // 定义全局变量
 let _temp_dir = null;
 // 检查是否为生产环境
-const _is_production = process.env.NODE_ENV === "production";
+const _is_production = process.env?.NODE_ENV === "production" || process.env?.NODE_ENV === "prod" || process.env?.ENVIRONMENT === 'production' || process.env?.ENVIRONMENT === 'prod';
 
 /**
  * 获取日志主目录和临时目录的路径
@@ -74,7 +74,7 @@ function _initialize_log_dirs() {
           // 从目录名提取进程ID
           const pid_str = item.split('_')[1];
           const pid = parseInt(pid_str);
-          
+
           // 检查进程是否仍在运行
           if (!_pid_exists(pid)) {
             // 进程不存在，可以安全删除临时目录
@@ -137,7 +137,7 @@ function logPro(content, options = {}) {
   // 根据clear_on_restart参数决定文件的存放位置和命名
   let log_dir;
   let log_file;
-  
+
   if (clear_on_restart) {
     // 非持久化文件，放在临时目录中
     log_dir = temp_log_dir;
