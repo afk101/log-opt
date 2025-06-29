@@ -7,7 +7,10 @@ const { execSync } = require('child_process');
 // 定义全局变量
 let _temp_dir = null;
 // 检查是否为生产环境
-const _is_production = process.env?.NODE_ENV === "production" || process.env?.NODE_ENV === "prod" || process.env?.ENVIRONMENT === 'production' || process.env?.ENVIRONMENT === 'prod';
+const _is_production = ['production', 'prod'].includes(process.env?.NODE_ENV) ||
+                      ['production', 'prod'].includes(process.env?.ENVIRONMENT) ||
+                      ['production', 'prod'].includes(process.env?.ENV) ||
+                      ['production', 'prod'].includes(process.env?.APP_ENV);
 
 /**
  * 获取日志主目录和临时目录的路径
