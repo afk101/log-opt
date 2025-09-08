@@ -113,7 +113,7 @@ function _initialize_log_dirs() {
  */
 function logPro(content, options = {}) {
   // 处理配置参数
-  const filename = options.filename || "default.txt";
+  let filename = options.filename || "default.txt";
   const clear_on_restart = options.clear_on_restart !== undefined ? options.clear_on_restart : true;
   const show_timestamp = options.show_timestamp || false;
   const line_breaks = options.line_breaks !== undefined ? options.line_breaks : 1;
