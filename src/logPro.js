@@ -183,7 +183,7 @@ function logPro(content, options = {}) {
   // 添加时间戳（如果需要）
   if (show_timestamp) {
     const now = new Date();
-    const timestamp = now.toISOString().replace('T', ' ').substring(0, 23);
+    const timestamp = now.toLocaleString();
     formatted_output += `[${timestamp}]\n`;
   }
 
